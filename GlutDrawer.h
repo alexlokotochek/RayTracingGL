@@ -12,7 +12,7 @@ class GlutDrawer {
 
 private:
 
-    char* title = new char[16];
+    char* title = new char[32];
 
     void initGL();
     static void display();
