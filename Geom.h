@@ -33,10 +33,12 @@ public:
 
     double get_distance(const CPoint3D& p) const;
 
-    void operator=(const CPoint3D& point);
     CPoint3D operator+(const CPoint3D& point);
     CPoint3D operator-(const CPoint3D& point);
+    void operator=(const CPoint3D& point);
     void operator/=(double div);
+    void operator+=(double a);
+    void operator-=(double a);
 };
 
 class CVector3D {
@@ -98,6 +100,8 @@ public:
     void operator=(const CColor& color);
 
 };
+
+enum EPlane { XY, YZ, XZ, NONE };
 
 
 #endif //RAYTRACINGGL_GEOM_H

@@ -15,18 +15,19 @@
 int main() {
 
     CSphere sphere;
+
     CVector3D v(CPoint3D(), CPoint3D(5.0, 5.0, 5.0));
+
     CPoint3D p;
 
-    if(sphere.intersect(v, p)) {
+    if (sphere.intersect(v, p)) {
         std::cout
-        << "yes: ("
+        << "yes: "
         << p.get_x()
         << ", "
         << p.get_y()
         << ", "
         << p.get_z()
-        << ")"
         << std::endl;
     }
 

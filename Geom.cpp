@@ -62,3 +62,14 @@ void CColor::operator=(const CColor& color) {
     m_green = color.get_green();
     m_blue = color.get_blue();
 }
+
+void CPoint3D::operator+=(double a) {
+    m_x += a;
+    m_y += a;
+    m_z += a;
+}
+void CPoint3D::operator-=(double a) {
+    m_x -= a;
+    m_y -= a;
+    m_z -= a;
+}
