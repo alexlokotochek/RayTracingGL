@@ -28,7 +28,7 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 # Include Files
 #########################################################
-add_executable(RayTracingGL main.cpp)
+add_executable(RayTracingGL main.cpp GlutDrawer.cpp GlutDrawer.h Geom.cpp Geom.h)
 #        Color.cpp
 #        Geometry3d/Vector.cpp Geometry3d/Segment.cpp Geometry3d/Line.cpp Geometry3d/Ray.cpp Geometry3d/Sphere.cpp
 #        Geometry3d/Parallelogram.cpp Geometry3d/Intersection.cpp Scene.cpp)
