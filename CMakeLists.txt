@@ -28,11 +28,4 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 # Include Files
 #########################################################
-<<<<<<< HEAD
 add_executable(RayTracingGL main.cpp GlutDrawer.cpp GlutDrawer.h Geom.cpp Geom.h)
-=======
-add_executable(RayTracingGL main.cpp GlutDrawer.cpp GlutDrawer.h)
->>>>>>> origin/master
-#        Color.cpp
-#        Geometry3d/Vector.cpp Geometry3d/Segment.cpp Geometry3d/Line.cpp Geometry3d/Ray.cpp Geometry3d/Sphere.cpp
-#        Geometry3d/Parallelogram.cpp Geometry3d/Intersection.cpp Scene.cpp)

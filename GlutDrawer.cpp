@@ -38,24 +38,14 @@ void GlutDrawer::reshape(GLsizei width, GLsizei height) {  // GLsizei for non-ne
     gluPerspective(45.0f, aspect, 0.1f, 100.0f);
 }
 
-<<<<<<< HEAD
 void GlutDrawer::startDraw(int &argc, char** argv) {
     glutInit(&argc, argv);            // Initialize GLUT
-=======
-void GlutDrawer::startDraw() {
-    glutInit(nullptr, nullptr);            // Initialize GLUT
->>>>>>> origin/master
     glutInitDisplayMode(GLUT_DOUBLE); // Enable double buffered mode
     glutInitWindowSize(800, 800);   // Set the window's initial width & height
     glutInitWindowPosition(50, 50); // Position the window's initial top-left corner
     glutCreateWindow(title);          // Create window with the given title
-<<<<<<< HEAD
     glutDisplayFunc(GlutDrawer::display);       // Register callback handler for window re-paint event
     glutReshapeFunc(GlutDrawer::reshape);       // Register callback handler for window re-size event
-=======
-    glutDisplayFunc(display);       // Register callback handler for window re-paint event
-    glutReshapeFunc(reshape);       // Register callback handler for window re-size event
->>>>>>> origin/master
     initGL();                       // Our own OpenGL initialization
     glutMainLoop();                 // Enter the infinite event-processing loop
 }
