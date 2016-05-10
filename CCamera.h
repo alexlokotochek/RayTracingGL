@@ -38,7 +38,7 @@ public:
 	CVector3D get_view() const { return m_view; }
 	void set_position(const CPoint3D& p) { m_position = p; }
 	void set_view(const CVector3D& v);
-	
+
 };
 
 
