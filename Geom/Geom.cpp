@@ -4,6 +4,48 @@
 
 #include "Geom.h"
 
+CPoint3D::CPoint3D() {
+    m_x = 0.;
+    m_y = 0.;
+    m_z = 0.;
+}
+
+CPoint3D::CPoint3D(double x, double y, double z) {
+    m_x = x;
+    m_y = y;
+    m_z = z;
+}
+
+CPoint3D::CPoint3D(const CPoint3D& point) {
+    m_x = point.get_x();
+    m_y = point.get_y();
+    m_z = point.get_z();
+}
+
+double CPoint3D::get_x() const {
+    return m_x;
+}
+
+double CPoint3D::get_y() const {
+    return m_y;
+}
+
+double CPoint3D::get_z() const {
+    return m_z;
+}
+
+void CPoint3D::set_x(double x) {
+    m_x = x;
+}
+
+void CPoint3D::set_y(double y) {
+    m_y = y;
+}
+
+void CPoint3D::set_z(double z) {
+    m_z = z;
+}
+
 double CPoint3D::get_distance(const CPoint3D& p) const {
     double dx = (m_x - p.get_x()) * (m_x - p.get_x());
     double dy = (m_y - p.get_y()) * (m_y - p.get_y());
@@ -35,10 +77,16 @@ void CPoint3D::operator/=(double div) {
     m_z /= div;
 }
 
-CPoint3D::CPoint3D(const CPoint3D& point) {
-    m_x = point.get_x();
-    m_y = point.get_y();
-    m_z = point.get_z();
+void CPoint3D::operator+=(double a) {
+    m_x += a;
+    m_y += a;
+    m_z += a;
+}
+
+void CPoint3D::operator-=(double a) {
+    m_x -= a;
+    m_y -= a;
+    m_z -= a;
 }
 
 void CVector3D::set_end(const CPoint3D& end) {
