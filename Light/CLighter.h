@@ -5,7 +5,7 @@
 #ifndef RAYTRACINGGL_CLIGHTER_H
 #define RAYTRACINGGL_CLIGHTER_H
 
-#include "geom.h"
+#include "../Geom/Geom.h"
 
 class CLighter {
 private:

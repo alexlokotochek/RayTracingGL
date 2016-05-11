@@ -2,7 +2,7 @@
 // Created by Lokotochek on 11.05.16.
 //
 
-#include "ckdtreecpu.h"
+#include "CKDTreeCPU.h"
 
 /*
  * CVoxel - this class implements a 3D-element (some kind of parallelepiped). All scene space is

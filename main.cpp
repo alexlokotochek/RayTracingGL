@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 #include <SDL2/SDL.h>
-#include "cscene.h"
-#include "cparser.h"
+#include "View/CScene.h"
+#include "Parser/CParser.h"
 
 int main(int argc, char** argv) {
     bool gpu_process = false;

@@ -2,7 +2,7 @@
 // Created by Lokotochek on 11.05.16.
 //
 
-#include "cparser.h"
+#include "CParser.h"
 
 void CCustomParser::parse(const std::string& filename) {
     std::ifstream in(filename);

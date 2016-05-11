@@ -5,7 +5,7 @@
 #ifndef RAYTRACINGGL_CCAMERA_H
 #define RAYTRACINGGL_CCAMERA_H
 
-#include "geom.h"
+#include "../Geom/Geom.h"
 
 class CCamera {
 

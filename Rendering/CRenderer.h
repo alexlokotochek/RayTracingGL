@@ -7,9 +7,9 @@
 
 #include <SDL2/SDL.h>
 #include <chrono>
-#include "ikdtree.h"
-#include "ccamera.hpp"
-#include "clighter.hpp"
+#include "../KDTree/IKDTree.h"
+#include "../View/ccamera.h"
+#include "../Light/clighter.h"
 
 const double PROJ_PLANE_DIST = 1.0;
 const double INTENSITY_COEFF = 10.0;

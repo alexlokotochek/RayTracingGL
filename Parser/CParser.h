@@ -7,8 +7,8 @@
 
 #include <fstream>
 #include <sstream>
-#include "iparser.h"
-#include "csphere.h"
+#include "IParser.h"
+#include "../Objects/CSphere.h"
 #include "ccamera.hpp"
 #include "clighter.hpp"
 

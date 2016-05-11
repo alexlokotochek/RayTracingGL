@@ -5,7 +5,7 @@
 #ifndef RAYTRACINGGL_IOBJECT3D_H
 #define RAYTRACINGGL_IOBJECT3D_H
 
-#include "geom.h"
+#include "../Geom/Geom.h"
 
 class IObject3D {
 public:

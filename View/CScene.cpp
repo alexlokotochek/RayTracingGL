@@ -2,7 +2,7 @@
 // Created by Lokotochek on 11.05.16.
 //
 
-#include "cscene.h"
+#include "CScene.h"
 
 void CScene::load_file(IParser* parser, const std::string& filename) {
     parser->parse(filename);

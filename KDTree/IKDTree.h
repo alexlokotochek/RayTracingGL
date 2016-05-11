@@ -5,8 +5,8 @@
 #ifndef RAYTRACINGGL_IKDTREE_H
 #define RAYTRACINGGL_IKDTREE_H
 
-#include "geom.h"
-#include "iobject3d.h"
+#include "../Geom/Geom.h"
+#include "../Objects/IObject3D.h"
 
 class IKDTree {
 public:

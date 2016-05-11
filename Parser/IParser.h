@@ -5,9 +5,9 @@
 #ifndef RAYTRACINGGL_IPARSER_H
 #define RAYTRACINGGL_IPARSER_H
 
-#include "iobject3d.h"
-#include "ccamera.h"
-#include "clighter.h"
+#include "../Objects/IObject3D.h"
+#include "../View/CCamera.h"
+#include "../Light/CLighter.h"
 
 class IParser {
 	public:

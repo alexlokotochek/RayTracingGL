@@ -6,13 +6,13 @@
 #define RAYTRACINGGL_CSCENE_H
 #include <string>
 #include <vector>
-#include "csphere.h"
-#include "cparser.h"
-#include "crenderer.h"
-#include "ckdtreecpu.h"
-#include "ccamera.h"
-#include "iparser.h"
-#include "clighter.h"
+#include "../Objects/CSphere.h"
+#include "../Parser/CParser.h"
+#include "../Rendering/CRenderer.h"
+#include "../KDTree/CKDTreeCPU.h"
+#include "CCamera.h"
+#include "../Parser/IParser.h"
+#include "../Light/CLighter.h"
 
 class CScene {
 private:

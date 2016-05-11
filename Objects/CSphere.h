@@ -6,7 +6,7 @@
 #define RAYTRACINGGL_CSPHERE_H
 
 
-#include "iobject3d.h"
+#include "IObject3D.h"
 
 class CSphere : public IObject3D {
 private:

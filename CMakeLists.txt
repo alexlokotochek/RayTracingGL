@@ -28,4 +28,4 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 # Include Files
 #########################################################
-add_executable(RayTracingGL main.cpp GlutDrawer.cpp GlutDrawer.h Geom.cpp Geom.h IObject3D.cpp IObject3D.h CCamera.cpp CCamera.h CSphere.cpp CSphere.h CScene.cpp CScene.h CKDTreeCPU.cpp CKDTreeCPU.h CLighter.cpp CLighter.h CParser.cpp CParser.h CRenderer.cpp CRenderer.h IKDTree.cpp IKDTree.h IParser.cpp IParser.h)
+add_executable(RayTracingGL main.cpp View/GlutDrawer.cpp View/GlutDrawer.h Geom/Geom.cpp Geom/Geom.h Objects/IObject3D.cpp Objects/IObject3D.h View/CCamera.cpp View/CCamera.h Objects/CSphere.cpp Objects/CSphere.h View/CScene.cpp View/CScene.h KDTree/CKDTreeCPU.cpp KDTree/CKDTreeCPU.h Light/CLighter.cpp Light/CLighter.h Parser/CParser.cpp Parser/CParser.h Rendering/CRenderer.cpp Rendering/CRenderer.h KDTree/IKDTree.cpp KDTree/IKDTree.h Parser/IParser.cpp Parser/IParser.h)

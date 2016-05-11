@@ -8,8 +8,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
-#include "iobject3d.h"
-#include "ikdtree.h"
+#include "../Objects/IObject3D.h"
+#include "IKDTree.h"
 
 const short MAX_DEPTH = 20;
 const short OBJECTS_IN_LEAF = 1;
