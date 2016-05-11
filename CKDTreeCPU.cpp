@@ -17,10 +17,13 @@
  * begin - the iterator to the beginning of the array, which contains scene objects;
  * end - the iterator to the ending of the array, which contains scene objects.
  */
-CVoxel::CVoxel(ObjIterator begin, ObjIterator end) {
-    if(begin == end) {
-        m_bottom = CPoint3D(-1.0, -1.0, -1.0);
-        m_top = CPoint3D(1.0, 1.0, 1.0);
+
+CVoxel::CVoxel(ObjIterator begin,
+               ObjIterator end) {
+
+    if (begin == end) {
+        m_bottom = CPoint3D (-1., -1., -1.);
+        m_top = CPoint3D (1., 1., 1.);
     }
 
     IObject3D* obj = *(begin);

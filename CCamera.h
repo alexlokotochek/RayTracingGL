@@ -16,22 +16,20 @@ private:
 
 public:
 
-	CCamera() : m_position(CPoint3D()),
-				m_view(CVector3D()) {}
+	CCamera() {};
 
 	CCamera(const CPoint3D& p,
-			const CVector3D& v) : m_position(p), m_view(v) {
-		m_view.normalize();
-	}
+			const CVector3D& v);
 
 	CCamera(const CPoint3D& p,
-			const CPoint3D& v) : m_position(p), m_view(CVector3D(p, v)) {
-		m_view.normalize();
-	}
+			const CPoint3D& v);
 
-	CPoint3D get_position() const { return m_position; }
-	CVector3D get_view() const { return m_view; }
-	void set_position(const CPoint3D& p) { m_position = p; }
+	CPoint3D get_position() const;
+
+	CVector3D get_view() const;
+
+	void set_position(const CPoint3D& p);
+
 	void set_view(const CVector3D& v);
 
 };
