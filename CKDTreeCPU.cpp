@@ -6,7 +6,7 @@
 
 /*
  * CVoxel - this class implements a 3D-element (some kind of parallelepiped). All scene space is
- * devided into voxels (using KD-tree) to increase the speed of ray tracing technique.
+ * divided into voxels (using KD-tree) to increase the speed of ray tracing technique.
  * m_bottom - point, which determines the bottom left vertice of voxel;
  * m_top - point, which determines the top right vertice of voxel.
  */

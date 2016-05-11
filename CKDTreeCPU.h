@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <vector>
 #include "iobject3d.h"
 #include "ikdtree.h"
 
