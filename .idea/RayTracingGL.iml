@@ -2,31 +2,10 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/rendering/Image.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/rendering/Image.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scene/OneColorBody.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scene/LightSource.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scene/Camera.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scene/IBody.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scene/TexturedBody.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/scene/Scene.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/figures/Sphere.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/figures/Figure.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/figures/Triangle.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/figures/FlatFigure.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/figures/BoundingBox.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/containers/Container.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/containers/StupidContainer.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/containers/KDTree.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Painting.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Painting.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/smth.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/reading/STLReader.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/reading/LightsLoader.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/reading/MyReader.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/geometry/Float.hpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/geometry/BasicGeom.hpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rendering/TGA.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/rendering/TGA.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <cstddef>
-#include <png++/png.hpp>
 #include "../geometry/Float.hpp"
+#include "./TGA.h"
 
 using namespace Float;
 using std::vector;
@@ -75,16 +75,27 @@ public:
     }
 
     void write(const char *filename) {
-        png::image< png::rgb_pixel > image(width, height);
+//        png::image< png::rgb_pixel > image(width, height);
+        TGAImage *img = new TGAImage(width,height);
+        Colour c;
+
         for (size_t y = 0; y < height; ++y)
         {
             for (size_t x = 0; x < width; ++x)
             {
-                image[y][x] = png::rgb_pixel(body[y][x].R,
-                    body[y][x].G, body[y][x].B);
+//                image[y][x] = png::rgb_pixel(body[y][x].R,
+//                    body[y][x].G, body[y][x].B);
+                c.r = body[y][x].R;
+                c.g = body[y][x].G;
+                c.b = body[y][x].B;
+//                c.a = 255;
+                img->setPixel(c,x,y);
+
             }
         }
-        image.write(filename);
+//        image.write(filename);
+//        string filename = "./test.tga";
+        img->WriteImage(filename);
     }
 };
 
