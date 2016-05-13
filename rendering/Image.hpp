@@ -88,14 +88,14 @@ public:
                 c.r = body[y][x].R;
                 c.g = body[y][x].G;
                 c.b = body[y][x].B;
-//                c.a = 255;
-                img->setPixel(c,x,y);
+//                c.a = 0;
+                img->setPixel(c,y,x);
 
             }
         }
 //        image.write(filename);
 //        string filename = "./test.tga";
-        img->WriteImage(filename);
+        img->WriteImage("/Users/lokotochek/GitHub/RayTracingGL/models/0/result/test.tga");
     }
 };
 

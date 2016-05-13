@@ -13,6 +13,8 @@ int main(int argc, char **argv) {
     char *lampsFile = argv[1];
     char *sceneFile = argv[2];
     char *outFile = argv[3];
+    std::cout << "LAMPS: " << lampsFile << std::endl;
+    std::cout << "SCENE: " << sceneFile << std::endl;
     Scene *scene = new Scene(lampsFile, sceneFile);
     Image image = view(camera, scene, 2160, 3840);
     image.write(outFile);
