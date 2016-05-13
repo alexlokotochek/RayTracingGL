@@ -70,18 +70,6 @@ public:
             return max(V[0][dim], max(V[1][dim], V[2][dim]));
         }
     }
-
-    Vector getPoint() const {
-        return V[0];
-    }
-
-    Vector getOX() const {
-        return (V[1] - V[0]).normed();
-    }
-
-    string name() const {
-        return "Triangle";
-    }
 };
 
 #endif

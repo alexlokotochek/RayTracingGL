@@ -1,7 +1,7 @@
 #ifndef RT_STUPID_CONTAINER
 #define RT_STUPID_CONTAINER
 
-#include "../scene/OneColorBody.hpp"
+#include "../scene/Body.hpp"
 #include "../rendering/Image.hpp"
 #include "../reading/STLReader.hpp"
 #include "Container.hpp"
@@ -17,25 +17,31 @@ using std::vector;
 using namespace BasicGeom;
 
 class StupidContainer: public Container {
-    vector<IBody *> bodies;
+    vector<Body> bodies;
 public:
     StupidContainer(const char *filename) {
-        bodies = readSTL(filename);
+        vector <Figure *> figures = readSTL(filename);
+        bodies.resize(figures.size());
+        for (size_t i = 0; i < figures.size(); ++i) {
+            bodies[i].figure = figures[i];
+            bodies[i].properties.color = Image::RGB(rand() % 255, rand() % 255,
+                                                    rand() % 255);
+        }
     }
 
-    pair<Vector, const IBody *> rayIntersection(const Ray &ray) const {
+    pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
         double minimalTime = 1e18;
-        const IBody *currentBody = NULL;
+        const Body *currentBody = NULL;
 
-        for (auto &body: bodies) {
-            Vector candidate = body->getFigure()->rayIntersection(ray);
+        for (auto const &body: bodies) {
+            Vector candidate = body.figure->rayIntersection(ray);
             if (candidate != NONE) {
                 double currentTime = (candidate - ray.start) * ray.direction;
 
                 if (less(currentTime, minimalTime)) { //and time != 0, perhaps??
                     minimalTime = currentTime;
                     //TODO: it will not always be so;
-                    currentBody = body;
+                    currentBody = &body;
                 }
             }
         }

@@ -2,7 +2,6 @@
 #define RT_BASIC_GEOM
 
 #include "Float.hpp"
-#include <cassert>
 
 using namespace Float;
 
@@ -41,8 +40,6 @@ namespace BasicGeom {
         Vector normed() const;
 
         myFloat operator[](size_t i) const;
-
-        void scanfVector(FILE *in);
     };
 
     const Vector NONE = Vector(1e18, 1e18, 1e18);
@@ -107,18 +104,13 @@ namespace BasicGeom {
     }
 
     myFloat Vector::operator[](size_t i) const {
-        switch (i) {
-            case 0:
-                return x;
-            break; case 1:
-                return y;
-            break; case 2:
-                return z;
+        if (i == 0) {
+            return x;
         }
-    }
-
-    void Vector::scanfVector(FILE *in) {
-        assert(fscanf(in, "%Lf%Lf%Lf", &x, &y, &z) == 3);
+        if (i == 1) {
+            return y;
+        }
+        return z;
     }
 
     bool collinearIfParralel(const Vector &a, const Vector &b) {
@@ -194,7 +186,7 @@ namespace BasicGeom {
     Vector intersect(const Ray &ray, const Plane &plane) {
         Vector dir = ray.direction.normed();
         myFloat denominator = dir * plane.n;
-        if (eq(denominator  , 0.)) {
+        if (eq(denominator, 0.)) {
             return NONE;
         }
         myFloat t = -(ray.start * plane.n + plane.d()) / denominator;
@@ -202,40 +194,6 @@ namespace BasicGeom {
             return ray.start + dir * t;;
         }
         return NONE;
-    }
-
-    Vector projection(const Vector &a, const Vector &b, const Vector &d2) {
-        Vector normalUp = (a - b) % d2;
-        Vector normal = (normalUp % d2).normed();
-        return a + (normal * (normalUp.len() / d2.len()));
-    }
-
-    void printVectorIfDebug (const Vector &a) {
-#ifdef RT_DEBUG
-        printf("%.3Lf %.3Lf %.3Lf; ", a.x, a.y, a.z);
-#endif
-    }
-
-    Vector reflection(const Vector &a, const Vector &b, const Vector &d2) {
-        Vector proj = d2.normed() * (d2.normed() * (a - b));
-        return a + (proj - (a - b)) * 2;
-        Vector normalUp = (a - b) % d2;
-        Vector normal = (normalUp % d2).normed();
-        return a + (normal * (2 * normalUp.len() / d2.len()));
-    }
-
-    Vector refraction(const Vector &a, const Vector &b, const Vector &d2,
-                      myFloat n) {
-        Vector normalUp = (a - b) % d2;
-        Vector secondDir = (d2 % normalUp).normed();
-        Vector firstDir = (-d2).normed();
-        myFloat currentSin = normalUp.len() / ((a - b).len() * d2.len());
-        myFloat nextSin = currentSin * n;
-        if (greater(nextSin, 1.0)) {
-            return NONE;
-        }
-        return firstDir * currentSin
-               + secondDir * sqrt(1 - currentSin * currentSin);
     }
 };
 
