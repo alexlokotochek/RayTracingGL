@@ -27,9 +27,6 @@ vector <Figure *> readSTL(const char *filename) {
                            &(*current)[i].z) != Triangle::size()) {
                     throw BAD_FORMAT;
                 }
-                // (*current)[i].x *= 100;
-                // (*current)[i].y *= 100;
-                // (*current)[i].z *= 100;
                 if (i + 1 != Triangle::size()) {
                     if (fscanf(in, "%s", s) != 1) { //here should be vertex word
                         throw BAD_FORMAT;
