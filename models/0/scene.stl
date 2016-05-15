@@ -1,20 +1,20 @@
 solid scene
     facet normal 0.0 0.0 1.0
         outer loop
-            vertex -100 100 100
-            vertex -100 200 120
-            vertex 100 100 100
+            vertex -10000 -10000 -200
+            vertex -10000 10000 -200
+            vertex 10000 -1000 0
         endloop
     endfacet
-
     facet normal 0.0 0.0 1.0
-        outer loop
-        vertex 100 100 75
-        vertex 200 200 100
-        vertex 100 200 200
-        endloop
-    endfacet
+            outer loop
+                vertex 0 0 1000
+                vertex 0 10000 -1000
+                vertex 0 0 1000
+            endloop
+        endfacet
 endsolid
 
-sphere 0 0 200 99
-sphere -1000 1000 10000 9700
+sphere 0 150 0 60
+sphere 0 0 150 90
+sphere 500 500 500 400

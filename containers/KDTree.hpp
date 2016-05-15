@@ -1,18 +1,26 @@
 #ifndef RT_KD_TREE
 #define RT_KD_TREE
 
-#include "Container.hpp"
+#include <algorithm>
+#include "../geometry/BasicGeom.hpp"
+#include "../scene/Body.hpp"
+#include "../rendering/Image.hpp"
+#include <utility>
 #include "../figures/Figure.hpp"
 #include "../reading/STLReader.hpp"
 #include <vector>
-#include <algorithm>
+
+
 
 using std::vector;
 using std::nth_element;
+using std::pair;
+
+using namespace BasicGeom;
 
 int steps = 0;
 
-class KDTree: public Container {
+class KDTree{
     struct Node {
         BoundingBox bounds;
         Node *left, *right;
@@ -84,6 +92,7 @@ class KDTree: public Container {
     }
 
 public:
+
     KDTree(const char *filename) {
         vector <Figure *> figures = readSTL(filename);
         vector <Body *> bodies(figures.size());
@@ -98,7 +107,8 @@ public:
         }
         printf("%d\n", bodies.size());
     }
-    virtual pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
+
+    pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
         myFloat currentTime = 1e18;
         const Body * currentIntersection = NULL;
         intersect(root, currentTime, currentIntersection, ray);

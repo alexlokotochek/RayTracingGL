@@ -2,9 +2,9 @@
 #define RT_TRIANGLE
 
 #include "Figure.hpp"
-#include "FlatFigure.hpp"
 #include "../geometry/BasicGeom.hpp"
 #include <algorithm>
+#include <cstdio>
 
 using std::min;
 using std::max;
@@ -12,7 +12,8 @@ using std::max;
 using namespace Float;
 using namespace BasicGeom;
 
-class Triangle: public FlatFigure {
+
+class Triangle : public Figure{
     static const int SIDES = 3;
     Vector V[SIDES];
     bool inside(const Vector &v) const {
@@ -70,6 +71,20 @@ public:
             return max(V[0][dim], max(V[1][dim], V[2][dim]));
         }
     }
+
+    Plane getTangentPlane(const Vector &point) const {
+        return getContainingPlane();
+    }
+
+    Vector rayIntersection(const Ray &r) const {
+        Plane self = getContainingPlane();
+        Vector candidate = intersect(r, self);
+        if (inside(candidate)) {
+            return candidate;
+        }
+        return NONE;
+    }
+
 };
 
 #endif

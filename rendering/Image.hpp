@@ -3,8 +3,9 @@
 
 #include <vector>
 #include <cstddef>
-#include "../geometry/Float.hpp"
-#include "./TGA.h"
+#include "../geometry/BasicGeom.hpp"
+#include <fstream>
+#include <iostream>
 
 using namespace Float;
 using std::vector;
@@ -76,26 +77,32 @@ public:
 
     void write(const char *filename) {
 //        png::image< png::rgb_pixel > image(width, height);
-        TGAImage *img = new TGAImage(width,height);
-        Colour c;
-
-        for (size_t y = 0; y < height; ++y)
-        {
-            for (size_t x = 0; x < width; ++x)
-            {
+//        for (size_t y = 0; y < height; ++y)
+//        {
+//            for (size_t x = 0; x < width; ++x)
+//            {
 //                image[y][x] = png::rgb_pixel(body[y][x].R,
 //                    body[y][x].G, body[y][x].B);
-                c.r = body[y][x].R;
-                c.g = body[y][x].G;
-                c.b = body[y][x].B;
-//                c.a = 0;
-                img->setPixel(c,y,x);
+//            }
+//        }
+//        image.write(filename);
+        std::ofstream ofs;
 
+        ofs.open(filename, std::ios::binary); // need to spec. binary mode for Windows users
+        if (ofs.fail())
+            std::cout << "Can't open output file";
+        ofs << "P6\n" << width << " " << height << "\n255\n";
+        unsigned char r, g, b;
+        // loop over each pixel in the image, clamp and convert to byte format
+        for (int y = 0; y < height; ++y) {
+            for (size_t x = 0; x < width; ++x) {
+                //            r = static_cast<unsigned char>(std::min(1.f, img.pixels[i].r) * 255);
+                //            g = static_cast<unsigned char>(std::min(1.f, img.pixels[i].g) * 255);
+                //            b = static_cast<unsigned char>(std::min(1.f, img.pixels[i].b) * 255);
+                ofs << body[y][x].R << body[y][x].G << body[y][x].B ;
             }
         }
-//        image.write(filename);
-//        string filename = "./test.tga";
-        img->WriteImage("/Users/lokotochek/GitHub/RayTracingGL/models/0/result/test.tga");
+        ofs.close();
     }
 };
 

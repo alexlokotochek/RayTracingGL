@@ -3,8 +3,6 @@
 
 #include "LightSource.hpp"
 #include "../geometry/BasicGeom.hpp"
-#include "../containers/Container.hpp"
-#include "../containers/StupidContainer.hpp"
 #include "../containers/KDTree.hpp"
 #include "../reading/LightsLoader.hpp"
 #include <vector>
@@ -13,7 +11,7 @@ using std::vector;
 
 class Scene {
     vector <LightSource> lights;
-    Container *container;
+    KDTree *container;
 public:
 
     Scene(const char *lightsFile, const char *figuresFile) {
