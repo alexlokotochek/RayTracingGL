@@ -14,8 +14,8 @@ using std::pair;
 class Camera {
     Vector position;
     Vector direction;
-    Vector stepX;
-    Vector stepY;
+    Vector xBasis;
+    Vector yBasis;
 public:
     const Vector& getPosition() const{
         return position;
@@ -23,15 +23,16 @@ public:
 
     Camera(const Vector &position,
            const Vector &direction,
-           const Vector &stepX) {
+           const Vector &xBasis,
+           const Vector &yBasis) {
         this->position = position;
         this->direction = direction;
-        this->stepX = stepX.normed();
-        stepY = this->stepX % (direction.normed());
+        this->xBasis = xBasis.normed();
+        this->yBasis = yBasis.normed();
     }
 
     Vector getPixel(float x, float y) const {
-        return position + direction + stepX * x + stepY * y;
+        return position + direction + xBasis*x + yBasis*y;
     }
 };
 

@@ -5,7 +5,9 @@
 int main(int argc, char **argv) {
     Camera camera(Vector(-500, 0, 0),
                   Vector(1000, 0, 0),
-                  Vector(0, 1, 0));
+                  Vector(0, 1, 0),
+                  Vector(0, 0, -1)
+    );
     char *lampsFile = argv[1];
     char *sceneFile = argv[2];
     char *outFile = argv[3];

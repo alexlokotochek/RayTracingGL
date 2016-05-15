@@ -97,8 +97,7 @@ public:
         vector <Figure *> figures = readSTL(filename);
         vector <Body *> bodies(figures.size());
         for (size_t i = 0; i < figures.size(); ++i) {
-            bodies[i] = new Body({Image::RGB(100, 100, 100)}, //rand() % 255, rand() % 255,
-                                                    //rand() % 255)},
+            bodies[i] = new Body({Image::RGB(120, 100, 90)},
                                  figures[i]);
         }
         root = makeTree(bodies.begin(), bodies.end(), 0);
