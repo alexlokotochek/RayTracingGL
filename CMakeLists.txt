@@ -1,11 +1,31 @@
-cmake_minimum_required (VERSION 2.6)
-project (RayTracer)
-add_definitions(`libpng-config --cflags`)
+cmake_minimum_required(VERSION 3.4)
+project(RayTracer)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-deprecated-declarations")
+set(CMAKE_EXE_LINKER_FLAGS " -framework GLUT -framework OpenGL -framework Cocoa")
+#########################################################
+# FIND GLUT
+#########################################################
+find_package(GLUT REQUIRED)
+include_directories(${GLUT_INCLUDE_DIRS})
+link_directories(${GLUT_LIBRARY_DIRS})
+add_definitions(${GLUT_DEFINITIONS})
+if(NOT GLUT_FOUND)
+    message(ERROR " GLUT not found!")
+endif(NOT GLUT_FOUND)
+
+#########################################################
+# FIND OPENGL
+#########################################################
+find_package(OpenGL REQUIRED)
+include_directories(${OpenGL_INCLUDE_DIRS})
+link_directories(${OpenGL_LIBRARY_DIRS})
+add_definitions(${OpenGL_DEFINITIONS})
+if(NOT OPENGL_FOUND)
+    message(ERROR " OPENGL not found!")
+endif(NOT OPENGL_FOUND)
+
 add_executable(RayTracer smth.cpp)
 
 add_definitions(-std=c++11)
-add_definitions(-O2)    
-#
-#find_package(PNG REQUIRED)
-#include_directories(${PNG_INCLUDE_DIR})
-#target_link_libraries(RayTracer ${PNG_LIBRARY})
+add_definitions(-O2)

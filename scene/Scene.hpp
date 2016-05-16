@@ -19,7 +19,7 @@ public:
         container = new KDTree(figuresFile);
     }
 
-    Image::RGB color(const Ray &cameraRay) const {
+    RGB color(const Ray &cameraRay) const {
         auto camViewPoint = container->rayIntersection(cameraRay);
         if (camViewPoint.first != NONE) {
             float increase = 0;
@@ -45,7 +45,7 @@ public:
             }
             return camViewPoint.second->properties.color * increase;
         }
-        return Image::RGB(0, 0, 0);
+        return RGB(0, 0, 0);
     }
     ~Scene() {
         delete container;

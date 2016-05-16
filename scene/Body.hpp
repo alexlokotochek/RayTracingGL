@@ -6,7 +6,7 @@
 
 struct Body {
     struct Properties {
-        Image::RGB color;
+        RGB color;
     };
 
     Properties properties;

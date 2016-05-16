@@ -10,12 +10,6 @@
 #include "../reading/STLReader.hpp"
 #include <vector>
 
-
-
-using std::vector;
-using std::nth_element;
-using std::pair;
-
 using namespace BasicGeom;
 
 int steps = 0;
@@ -97,7 +91,7 @@ public:
         vector <Figure *> figures = readSTL(filename);
         vector <Body *> bodies(figures.size());
         for (size_t i = 0; i < figures.size(); ++i) {
-            bodies[i] = new Body({Image::RGB(120, 100, 90)},
+            bodies[i] = new Body({RGB(120, 100, 90)},
                                  figures[i]);
         }
         root = makeTree(bodies.begin(), bodies.end(), 0);
@@ -107,7 +101,7 @@ public:
         printf("%d\n", bodies.size());
     }
 
-    pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
+    std::pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
         myFloat currentTime = 1e18;
         const Body * currentIntersection = NULL;
         intersect(root, currentTime, currentIntersection, ray);
