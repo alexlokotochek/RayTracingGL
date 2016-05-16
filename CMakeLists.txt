@@ -25,7 +25,7 @@ if(NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
 endif(NOT OPENGL_FOUND)
 
-add_executable(RayTracer smth.cpp)
+add_executable(RayTracer main.cpp)
 
 add_definitions(-std=c++11)
 add_definitions(-O2)

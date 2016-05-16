@@ -1,7 +1,7 @@
 #ifndef RT_BODY
 #define RT_BODY
 
-#include "../rendering/Image.hpp"
+#include "../Image.hpp"
 #include "../figures/Figure.hpp"
 
 struct Body {

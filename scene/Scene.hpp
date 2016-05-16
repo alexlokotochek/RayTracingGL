@@ -2,15 +2,13 @@
 #define RT_SCENE
 
 #include "LightSource.hpp"
-#include "../geometry/BasicGeom.hpp"
-#include "../containers/KDTree.hpp"
+#include "../BasicGeom.hpp"
+#include "../KDTree.hpp"
 #include "../reading/LightsLoader.hpp"
 #include <vector>
 
-using std::vector;
-
 class Scene {
-    vector <LightSource> lights;
+    std::vector <LightSource> lights;
     KDTree *container;
 public:
 

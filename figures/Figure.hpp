@@ -1,7 +1,7 @@
 #ifndef RT_FIGURE
 #define RT_FIGURE
 
-#include "../geometry/BasicGeom.hpp"
+#include "../BasicGeom.hpp"
 #include <algorithm>
 
 using namespace BasicGeom;

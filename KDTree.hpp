@@ -2,12 +2,12 @@
 #define RT_KD_TREE
 
 #include <algorithm>
-#include "../geometry/BasicGeom.hpp"
-#include "../scene/Body.hpp"
-#include "../rendering/Image.hpp"
+#include "BasicGeom.hpp"
+#include "scene/Body.hpp"
+#include "Image.hpp"
 #include <utility>
-#include "../figures/Figure.hpp"
-#include "../reading/STLReader.hpp"
+#include "figures/Figure.hpp"
+#include "reading/STLReader.hpp"
 #include <vector>
 
 using namespace BasicGeom;

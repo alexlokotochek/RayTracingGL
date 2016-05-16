@@ -1,7 +1,7 @@
 #ifndef RT_CAMERA
 #define RT_CAMERA
 
-#include "../rendering/Image.hpp"
+#include "../Image.hpp"
 #include "../figures/Figure.hpp"
 #include "Scene.hpp"
 #include <algorithm>

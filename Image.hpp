@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <cstddef>
-#include "../geometry/BasicGeom.hpp"
+#include "BasicGeom.hpp"
 #include <fstream>
 #include <iostream>
 #include <GLUT/glut.h>

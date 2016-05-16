@@ -2,7 +2,7 @@
 #define RT_SPHERE
 
 #include "Figure.hpp"
-#include "../geometry/BasicGeom.hpp"
+#include "../BasicGeom.hpp"
 #include <algorithm>
 #include <cstdio>
 
