@@ -100,7 +100,7 @@ class KDTree{
 
 public:
 
-    KDTree(const char *filename, const char &readMode) {
+    KDTree(const std::string filename, const char &readMode) {
         vector <Figure *> figures;
         if (readMode == 'a') {
             figures = readAsciiStl(filename);

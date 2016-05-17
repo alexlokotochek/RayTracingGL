@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 project(RayTracer)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-deprecated-declarations")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wno-unused-parameter -Wno-deprecated-declarations -v")
 set(CMAKE_EXE_LINKER_FLAGS " -framework GLUT -framework OpenGL -framework Cocoa")
 #########################################################
 # FIND GLUT
@@ -26,6 +26,3 @@ if(NOT OPENGL_FOUND)
 endif(NOT OPENGL_FOUND)
 
 add_executable(RayTracer main.cpp)
-
-add_definitions(-std=c++11)
-add_definitions(-O2)

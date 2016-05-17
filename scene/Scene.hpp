@@ -12,7 +12,7 @@ class Scene {
     KDTree *container;
 public:
 
-    Scene(const char *lightsFile, const char *figuresFile, const char &readMode) {
+    Scene(const std::string lightsFile, const std::string figuresFile, const char &readMode) {
         lights = readLightSources(lightsFile);
         container = new KDTree(figuresFile, readMode);
     }

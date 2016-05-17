@@ -41,7 +41,6 @@ vector <vector <RGB> > body;
 void Display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glBegin(GL_POINTS);
-//    ofs << body[y][x].R << body[y][x].G << body[y][x].B;
 
     for (size_t y = 0; y < height; ++y) {
         for (size_t x = 0; x < width; ++x) {
@@ -57,7 +56,7 @@ void Initialize() {
     glClearColor(0, 0, 0, 0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0.0, height, 0.0, width, -1.0, 1.0);
+    glOrtho(0, width, height, 0, 0, 1);
 }
 
 class Image {
@@ -81,7 +80,7 @@ public:
         return body[i][j];
     }
 
-    void write(const char *filename) {
+    void write(std::string filename) {
         std::ofstream ofs;
 
         // need to spec. binary mode for Windows/UNIX users

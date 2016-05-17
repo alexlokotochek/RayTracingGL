@@ -71,13 +71,13 @@ namespace BasicGeom {
         myFloat operator[](size_t i) const;
     };
 
-    const Vector NONE = Vector(1e18, 1e18, 1e18);
+    const Vector NONE = Vector(1e15, 1e15, 1e15);
 
-    Vector::Vector() {
-    }
+    Vector::Vector() { }
 
-    Vector::Vector(myFloat x, myFloat y, myFloat z) : x(x), y(y), z(z) {
-    }
+    Vector::Vector(myFloat x,
+                   myFloat y,
+                   myFloat z) : x(x), y(y), z(z) { }
 
     bool Vector::operator==(const Vector &a) const {
         return eq(x, a.x) && eq(y, a.y) && eq(z, a.z);

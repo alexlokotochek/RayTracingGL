@@ -51,11 +51,12 @@ public:
         return r.start + normedDirection * t;
     }
 
-    bool fscanfSelf(FILE *in) {
-        if (fscanf(in, "%lf %lf %lf %lf", &O.x, &O.y, &O.z, &R) != 4) {
-            return false;
-        }
-        return true;
+    void fscanfSelf(std::ifstream &fin) {
+//        if (fscanf(in, "%lf %lf %lf %lf", &O.x, &O.y, &O.z, &R) != 4) {
+//            return false;
+//        }
+//        return true;
+        fin >> O.x >> O.y >> O.z >> R;
     }
 
     BoundingBox getBoundingBox() const {
