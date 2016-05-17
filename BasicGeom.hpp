@@ -36,7 +36,6 @@ namespace Float {
 using namespace Float;
 
 namespace BasicGeom {
-    const int DIMENSIONS = 3;
 
     struct Vector {
         myFloat x, y, z;

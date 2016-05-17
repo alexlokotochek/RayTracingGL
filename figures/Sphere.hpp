@@ -60,7 +60,7 @@ public:
 
     BoundingBox getBoundingBox() const {
         BoundingBox result;
-        for (int i = 0; i < DIMENSIONS; ++i) {
+        for (int i = 0; i < 3; ++i) {
             result[i][0] = O[i] - R;
             result[i][1] = O[i] + R;
         }

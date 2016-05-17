@@ -13,7 +13,7 @@ class Camera {
     Vector yBasis;
 public:
 
-    const Vector& getPosition() const {
+    const Vector &getPosition() const {
         return position;
     }
 
@@ -23,8 +23,7 @@ public:
            const Vector &yBasis) : position(position),
                                    direction(direction),
                                    xBasis(xBasis.normed()),
-                                   yBasis(yBasis.normed()){
-    }
+                                   yBasis(yBasis.normed()){}
 
     Vector getPixel(float x, float y) const {
         return position +

@@ -14,25 +14,27 @@ using namespace BasicGeom;
 
 int steps = 0;
 
+class Node {
+public:
+    BoundingBox bounds;
+    Node *left, *right;
+    Body *body;
+    Node() {
+        body = NULL;
+        left = right = NULL;
+    }
+    Node (Body *body) : body(body) {
+        bounds = body->figure->getBoundingBox();
+        left = right = NULL;
+    }
+    ~Node() {
+        delete body;
+        delete left;
+        delete right;
+    }
+};
+
 class KDTree{
-    struct Node {
-        BoundingBox bounds;
-        Node *left, *right;
-        Body *body;
-        Node() {
-            body = NULL;
-            left = right = NULL;
-        }
-        Node (Body *body) : body(body) {
-            bounds = body->figure->getBoundingBox();
-            left = right = NULL;
-        }
-        ~Node() {
-            delete body;
-            delete left;
-            delete right;
-        }
-    };
 
     Node *root;
 
@@ -58,9 +60,9 @@ class KDTree{
                     });
         Node *result = new Node(*(begin + n / 2));
         result->left = makeTree(begin, begin + (n / 2),
-                                (step + 1) % DIMENSIONS);
+                                (step + 1) % 3);
         result->right = makeTree(begin + (n / 2) + 1, end,
-                                (step + 1) % DIMENSIONS);
+                                (step + 1) % 3);
         recalc(result);
         return result;
     }
@@ -76,39 +78,55 @@ class KDTree{
         if (current != NONE) {
             myFloat myTime = (current - currentRay.start)
                               * currentRay.direction;
-            if (greaterOrEqual(myTime, 0.) && less(myTime, currentTime)) {
+            if (greater(myTime, 0.) && less(myTime, currentTime)) {
                 currentTime = myTime;
                 currentIntersection = v->body;
             }
         }
-        intersect(v->left, currentTime, currentIntersection, currentRay);
-        intersect(v->right, currentTime, currentIntersection, currentRay);
+        intersect(v->left,
+                  currentTime,
+                  currentIntersection,
+                  currentRay);
+        intersect(v->right,
+                  currentTime,
+                  currentIntersection,
+                  currentRay);
     }
 
 public:
 
-    KDTree(const char *filename) {
-        vector <Figure *> figures = readSTL(filename);
+    KDTree(const char *filename, const char &readMode) {
+        vector <Figure *> figures;
+        if (readMode == 'a') {
+            figures = readAsciiStl(filename);
+        }
+        if (readMode == 'b') {
+
+            std::cout << "binary reading" << std::endl;
+
+            figures = readBinaryStl(filename);
+        }
         vector <Body *> bodies(figures.size());
         for (size_t i = 0; i < figures.size(); ++i) {
             bodies[i] = new Body({RGB(120, 100, 90)},
                                  figures[i]);
         }
         root = makeTree(bodies.begin(), bodies.end(), 0);
-        for (int i = 0; i < 3; ++i) {
-            printf("%.3f %.3f\n", root->bounds[i][0], root->bounds[i][1]);
-        }
-        printf("%d\n", bodies.size());
     }
 
     std::pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
-        myFloat currentTime = 1e18;
-        const Body * currentIntersection = NULL;
-        intersect(root, currentTime, currentIntersection, ray);
-        if (eq(currentTime, 1e18)) {
+        myFloat currentTime = 1e15;
+        const Body *currentIntersection = NULL;
+        intersect(root,
+                  currentTime,
+                  currentIntersection,
+                  ray);
+        if (eq(currentTime, 1e15)) {
             return {NONE, NULL};
+        } else {
+            return {ray.start + ray.direction * currentTime,
+                    currentIntersection};
         }
-        return {ray.start + ray.direction * currentTime, currentIntersection};
     }
 
     ~KDTree() {

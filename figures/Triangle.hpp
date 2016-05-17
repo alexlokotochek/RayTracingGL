@@ -57,7 +57,7 @@ public:
 
     BoundingBox getBoundingBox() const {
         BoundingBox result;
-        for (int i = 0; i < DIMENSIONS; ++i) {
+        for (int i = 0; i < 3; ++i) {
             result[i][0] = min(min(V[0][i], V[1][i]), V[2][i]);
             result[i][1] = max(max(V[0][i], V[1][i]), V[2][i]);
         }

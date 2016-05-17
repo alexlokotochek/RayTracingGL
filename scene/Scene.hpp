@@ -12,9 +12,9 @@ class Scene {
     KDTree *container;
 public:
 
-    Scene(const char *lightsFile, const char *figuresFile) {
+    Scene(const char *lightsFile, const char *figuresFile, const char &readMode) {
         lights = readLightSources(lightsFile);
-        container = new KDTree(figuresFile);
+        container = new KDTree(figuresFile, readMode);
     }
 
     RGB color(const Ray &cameraRay) const {

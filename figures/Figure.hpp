@@ -11,11 +11,13 @@ using std::max;
 
 struct BoundingBox {
 
-    myFloat boundaries[DIMENSIONS][2];
+    myFloat boundaries[3][2];
 
     myFloat* operator[](size_t i) {
         return boundaries[i];
     }
+
+    ~BoundingBox() {}
 
     const myFloat* operator[](size_t i) const {
         return boundaries[i];
@@ -23,7 +25,7 @@ struct BoundingBox {
 
     bool intersects(const Ray &ray) const {
 
-        for (int i = 0; i < DIMENSIONS; ++i) {
+        for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 2; ++j) {
                 myFloat t;
                 if (eq(ray.direction[i], 0.)) {
@@ -41,11 +43,11 @@ struct BoundingBox {
                 }
                 Vector candidate = ray.start + ray.direction * t;
                 bool fail = false;
-                for (int k = 1; k < DIMENSIONS; ++k) {
-                    if (!(less(boundaries[(i + k) % DIMENSIONS][0],
-                               candidate[(i + k) % DIMENSIONS]) &&
-                          less(candidate[(i + k) % DIMENSIONS],
-                               boundaries[(i + k) % DIMENSIONS][1]))) {
+                for (int k = 1; k < 3; ++k) {
+                    if (!(less(boundaries[(i + k) % 3][0],
+                               candidate[(i + k) % 3]) &&
+                          less(candidate[(i + k) % 3],
+                               boundaries[(i + k) % 3][1]))) {
                         fail = true;
                     }
                 }
@@ -60,7 +62,7 @@ struct BoundingBox {
 
 BoundingBox operator|(const BoundingBox &a, const BoundingBox &b) {
     BoundingBox result;
-    for (int i = 0; i < DIMENSIONS; ++i) {
+    for (int i = 0; i < 3; ++i) {
         result[i][0] = min(a[i][0], b[i][0]);
         result[i][1] = max(a[i][1], b[i][1]);
     }
@@ -72,7 +74,7 @@ bool intersects(const myFloat *first, const myFloat *second) {
 }
 
 bool intersects(const BoundingBox &a, const BoundingBox &b) {
-    for (int i = 0; i < DIMENSIONS; ++i) {
+    for (int i = 0; i < 3; ++i) {
         if (!intersects(a[i], b[i])) {
             return false;
         }
@@ -86,7 +88,7 @@ bool isInside(const myFloat *first, const myFloat *second) {
 }
 
 bool isInside(const BoundingBox &a, const BoundingBox &b) {
-    for (int i = 0; i < DIMENSIONS; ++i) {
+    for (int i = 0; i < 3; ++i) {
         if (!isInside(a, b)) {
             return false;
         }
