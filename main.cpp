@@ -7,22 +7,19 @@ const char readMode = 'a'; // a: ascii stl, b: binary stl
 
 int main(int argc, char **argv) {
 
-//    // spheres
-    Camera camera(Vector(-550, 90, 60),
-                  Vector(1000, 0, 0),
-                  Vector(0, 1, 0), // 2 basis for rotate
-                  Vector(0, 0, 1) // GLUT: 1, FILE: -1
-    );
-
-
-//    default (Vector(-150, -150, 250), Vector(1000, 1000, -1000), Vector(0, 1, 0), 001);
-//     bowl
-//    Camera camera(Vector(-300, -300, 250),
-//                  Vector(2000, 2000, -1250),
-//                  Vector(0, 1, 0), // 2 basis for rotate
-//                  Vector(0, 0, 1) // GLUT: 1, FILE: -1
-//    );
-//
+//    Camera(
+//    const Vector &position,
+//    const Vector &topLeft,
+//    const Vector &bottomLeft,
+//    const Vector &topRight,
+//    int height,
+//    int width)
+    Camera camera(Vector(-200, 0, 0),
+                  Vector(-100, -100, 100),
+                  Vector(-100, -100, -100), // 2 basis for rotate
+                  Vector(-100, 100, 100),
+                  800,
+                  800);
 
 
     char *lampsFile = argv[1];

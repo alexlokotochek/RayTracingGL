@@ -53,16 +53,21 @@ class KDTree{
             return NULL;
         }
         int n = end - begin;
-        nth_element(begin, begin + n / 2, end,
-                    [&step] (const Body * a, const Body *b) {
-                        return a->figure->getBoundingBox(step, 0) <
-                        b->figure->getBoundingBox(step, 0);
-                    });
+        auto process = [&step] (const Body * a, const Body *b) {
+            return  (a->figure->getBoundingBox(step, 0) <
+                     b->figure->getBoundingBox(step, 0));
+        };
+        nth_element(begin,
+                    begin + n / 2,
+                    end,
+                    process);
         Node *result = new Node(*(begin + n / 2));
-        result->left = makeTree(begin, begin + (n / 2),
+        result->left = makeTree(begin,
+                                begin + (n / 2),
                                 (step + 1) % 3);
-        result->right = makeTree(begin + (n / 2) + 1, end,
-                                (step + 1) % 3);
+        result->right = makeTree(begin + (n / 2) + 1,
+                                 end,
+                                 (step + 1) % 3);
         recalc(result);
         return result;
     }
