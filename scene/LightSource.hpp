@@ -3,14 +3,14 @@
 
 #include "../Geometry.hpp"
 
-using namespace BasicGeom;
+using namespace Geometry;
 
 class LightSource {
 public:
-    Vector position;
-    myFloat energy;
+    Vector3D position;
+    goodFloat energy;
 
-    myFloat getIncrease(const Vector &point, const Vector &normal) const {
+    goodFloat getIncrease(const Vector3D &point, const Vector3D &normal) const {
         return energy / pow((position - point).len(), 3.)
                * (normal * (position - point)) / (normal.len());
     }

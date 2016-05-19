@@ -13,10 +13,10 @@ namespace ConfigReader {
     std::string lampsFile;
     std::string sceneFile;
     std::string outFile;
-    Vector position;
-    Vector topLeft;
-    Vector bottomLeft;
-    Vector topRight;
+    Vector3D position;
+    Vector3D topLeft;
+    Vector3D bottomLeft;
+    Vector3D topRight;
 
     void read(std::string filename) {
 
@@ -24,7 +24,7 @@ namespace ConfigReader {
 
         std::string input;
 
-        myFloat x, y, z;
+        goodFloat x, y, z;
 
         while (!fin.eof()) {
             fin >> input;
@@ -51,19 +51,19 @@ namespace ConfigReader {
             }
             if (input == "position") {
                 fin >> x >> y >> z;
-                position = Vector(x, y, z);
+                position = Vector3D(x, y, z);
             }
             if (input == "topLeft") {
                 fin >> x >> y >> z;
-                topLeft = Vector(x, y, z);
+                topLeft = Vector3D(x, y, z);
             }
             if (input == "bottomLeft") {
                 fin >> x >> y >> z;
-                bottomLeft = Vector(x, y, z);
+                bottomLeft = Vector3D(x, y, z);
             }
             if (input == "topRight") {
                 fin >> x >> y >> z;
-                topRight = Vector(x, y, z);
+                topRight = Vector3D(x, y, z);
             }
         }
 

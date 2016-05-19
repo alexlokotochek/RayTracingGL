@@ -8,64 +8,77 @@
 
 using std::min;
 
-using namespace Float;
-using namespace BasicGeom;
+using namespace GoodFloat;
+using namespace Geometry;
 
 struct Sphere: public Object {
-    Vector O;
-    myFloat R;
 
-public:
-    Sphere() {
+    Vector3D Center;
+    goodFloat Radius;
+//    RGB Object::figureColor;
+
+    Sphere() {}
+
+    Sphere(const Vector3D &Center,
+           const goodFloat &Radius) : Center(Center),
+                                      Radius(Radius) {}
+
+    Plane getTangentPlane(const Vector3D &point) const {
+        return Plane(point, point - Center);
     }
 
-    Sphere(const Vector &O, const myFloat &R) : O(O), R(R) {
-    }
-
-    Plane getTangentPlane(const Vector &point) const {
-        return Plane(point, point - O);
-    }
-
-    Vector rayIntersection(const Ray &r) const {
-        Vector normalUp = ((O - r.start) % r.direction);
-        myFloat distance2 = normalUp.len2() / r.direction.len2();
-        if (greater(distance2, sq(R))) {
+    Vector3D rayIntersection(const Ray &r) const {
+        Vector3D normalUp = ((Center - r.start) % r.direction);
+        goodFloat distance2 = normalUp.len2() / r.direction.len2();
+        if (greater(distance2, sq(Radius))) {
             return NONE;
         }
-        myFloat startDistance = sqrt((O - r.start).len2() - distance2);
-        Vector normedDirection = r.direction.normed();
-        Vector projection = r.start + normedDirection * startDistance;
-        myFloat intersecDistance = sqrt(sq(R) - distance2);
+        goodFloat startDistance = sqrt((Center - r.start).len2() - distance2);
+        Vector3D normedDirection = r.direction.normed();
+        Vector3D projection = r.start + normedDirection * startDistance;
+        goodFloat intersecDistance = sqrt(sq(Radius) - distance2);
 
-        Vector candidate1 = projection - normedDirection * intersecDistance;
-        Vector candidate2 = projection + normedDirection * intersecDistance;
+        Vector3D candidate1 = projection - normedDirection * intersecDistance;
+        Vector3D candidate2 = projection + normedDirection * intersecDistance;
 
-        myFloat t1 = (candidate1 - r.start) * normedDirection;
-        myFloat t2 = (candidate2 - r.start) * normedDirection;
+        goodFloat t1 = (candidate1 - r.start) * normedDirection;
+        goodFloat t2 = (candidate2 - r.start) * normedDirection;
         t1 = (lessOrEqual(t1, 0.) ? 1e18 : t1);
         t2 = (lessOrEqual(t2, 0.) ? 1e18 : t2);
-        myFloat t = min(t1, t2);
+        goodFloat t = min(t1, t2);
         if (eq(t, 1e18)) {
             return NONE;
         }
         return r.start + normedDirection * t;
     }
 
-    void fscanfSelf(std::ifstream &fin) {
-        fin >> O.x >> O.y >> O.z >> R;
+    void readMe(std::ifstream &fin) {
+        int r, g, b;
+        fin >>
+            Center.x >>
+            Center.y >>
+            Center.z >>
+            Radius >>
+            r >>
+            g >>
+            b;
+        std::cerr << std::endl << r << " " << g << " " << b << std::endl;
+        figureColor.R = (unsigned char)r;
+        figureColor.G = (unsigned char)g;
+        figureColor.B = (unsigned char)b;
     }
 
-    BoundingBox getBoundingBox() const {
-        BoundingBox result;
+    Box getBoundingBox() const {
+        Box result;
         for (int i = 0; i < 3; ++i) {
-            result[i][0] = O[i] - R;
-            result[i][1] = O[i] + R;
+            result[i][0] = Center[i] - Radius;
+            result[i][1] = Center[i] + Radius;
         }
         return result;
     }
 
-    myFloat getBoundingBox(int dim, int side) const {
-        return O[dim] + (2 * side - 1) * R;
+    goodFloat getBoundingBox(int dim, int side) const {
+        return Center[dim] + (2 * side - 1) * Radius;
     }
 };
 

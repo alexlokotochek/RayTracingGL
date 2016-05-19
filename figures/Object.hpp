@@ -4,50 +4,51 @@
 #include "../Geometry.hpp"
 #include <algorithm>
 
-using namespace BasicGeom;
+using namespace Geometry;
 
 using std::min;
 using std::max;
 
-struct BoundingBox {
+class Box {
+public:
 
-    myFloat boundaries[3][2];
+    goodFloat bounds[3][2];
 
-    myFloat* operator[](size_t i) {
-        return boundaries[i];
+    goodFloat* operator[](size_t i) {
+        return bounds[i];
     }
 
-    ~BoundingBox() {}
+    ~Box() {}
 
-    const myFloat* operator[](size_t i) const {
-        return boundaries[i];
+    const goodFloat* operator[](size_t i) const {
+        return bounds[i];
     }
 
     bool intersects(const Ray &ray) const {
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 2; ++j) {
-                myFloat t;
+                goodFloat t;
                 if (eq(ray.direction[i], 0.)) {
-                    if (eq(ray.start[i], boundaries[i][j])) {
+                    if (eq(ray.start[i], bounds[i][j])) {
                         t = 0;
                     }
                     else {
                         continue;
                     }
                 } else {
-                    t = (boundaries[i][j] - ray.start[i]) / ray.direction[i];
+                    t = (bounds[i][j] - ray.start[i]) / ray.direction[i];
                 }
                 if (less(t, 0.)) {
                     continue;
                 }
-                Vector candidate = ray.start + ray.direction * t;
+                Vector3D candidate = ray.start + ray.direction * t;
                 bool fail = false;
                 for (int k = 1; k < 3; ++k) {
-                    if (!(less(boundaries[(i + k) % 3][0],
+                    if (!(less(bounds[(i + k) % 3][0],
                                candidate[(i + k) % 3]) &&
                           less(candidate[(i + k) % 3],
-                               boundaries[(i + k) % 3][1]))) {
+                               bounds[(i + k) % 3][1]))) {
                         fail = true;
                     }
                 }
@@ -60,8 +61,8 @@ struct BoundingBox {
     }
 };
 
-BoundingBox operator|(const BoundingBox &a, const BoundingBox &b) {
-    BoundingBox result;
+Box operator|(const Box &a, const Box &b) {
+    Box result;
     for (int i = 0; i < 3; ++i) {
         result[i][0] = min(a[i][0], b[i][0]);
         result[i][1] = max(a[i][1], b[i][1]);
@@ -69,11 +70,7 @@ BoundingBox operator|(const BoundingBox &a, const BoundingBox &b) {
     return result;
 }
 
-bool intersects(const myFloat *first, const myFloat *second) {
-    return greaterOrEqual(min(first[1], second[1]), max(first[0], second[0]));
-}
-
-bool isInside(const BoundingBox &a, const BoundingBox &b) {
+bool isInside(const Box &a, const Box &b) {
     for (int i = 0; i < 3; ++i) {
         if (!isInside(a, b)) {
             return false;
@@ -83,15 +80,18 @@ bool isInside(const BoundingBox &a, const BoundingBox &b) {
 }
 
 struct Object {
-    virtual Vector rayIntersection(const Ray &r) const = 0;
-    virtual Plane getTangentPlane(const Vector &point) const = 0;
-    virtual BoundingBox getBoundingBox() const = 0;
-    virtual myFloat getBoundingBox(int dim, int side) const {
+
+    RGB figureColor = RGB(120, 100, 90);
+
+    virtual Vector3D rayIntersection(const Ray &r) const = 0;
+    virtual Plane getTangentPlane(const Vector3D &point) const = 0;
+    virtual Box getBoundingBox() const = 0;
+    virtual goodFloat getBoundingBox(int dim, int side) const {
         return getBoundingBox()[dim][side];
     }
 
-    virtual ~Object() {
-    }
+    virtual ~Object() {}
+
 };
 
 #endif

@@ -7,18 +7,13 @@
 #include <cstdio>
 #include <cstring>
 
-const char *VERTEX = "vertex";
-const char *SPHERE = "sphere";
-const char *BAD_FORMAT = "bad stl file";
 vector <Object *> readAsciiStl(const std::string filename) {
     vector <Object *> result;
-    std::ifstream fin(filename,
-                      std::ios::binary | std::ios::in);
-    static const int MAX_LINE_LENGTH = 80;
-    char s[MAX_LINE_LENGTH];
+    std::ifstream fin(filename, std::ios::in);
+    std::string s;
     while (!fin.eof()) {
         fin >> s;
-        if (strcmp(s, VERTEX) == 0) {
+        if (s == "vertex") {
             Triangle* current = new Triangle();
             for (int i = 0; i < Triangle::size(); ++i) {
                 fin >> (*current)[i].x >> (*current)[i].y >> (*current)[i].z;
@@ -27,9 +22,9 @@ vector <Object *> readAsciiStl(const std::string filename) {
                 }
             }
             result.push_back(dynamic_cast<Object *>(current));
-        } else if (strcmp(s, SPHERE) == 0) {
+        } else if (s == "sphere") {
             Sphere *sphere = new Sphere();
-            sphere->fscanfSelf(fin);
+            sphere->readMe(fin);
 
             result.push_back(dynamic_cast<Object *>(sphere));
         }

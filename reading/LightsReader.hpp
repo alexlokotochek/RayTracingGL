@@ -7,8 +7,6 @@
 
 using std::vector;
 
-const char *BAD_FILE = "Bad lights sources file";
-
 vector<LightSource> readLightSources(const std::string filename) {
     vector <LightSource> result;
     std::ifstream fin(filename,

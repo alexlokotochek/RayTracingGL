@@ -10,7 +10,7 @@ set(SOURCE_FILES
         figures/Sphere.hpp
         figures/Triangle.hpp
         reading/ConfigReader.hpp
-        reading/LightsLoader.hpp
+        reading/LightsReader.hpp
         reading/STLReader.hpp
         scene/Body.hpp
         scene/Camera.hpp

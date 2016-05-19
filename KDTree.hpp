@@ -10,13 +10,13 @@
 #include "reading/STLReader.hpp"
 #include <vector>
 
-using namespace BasicGeom;
+using namespace Geometry;
 
 int steps = 0;
 
 class Node {
 public:
-    BoundingBox bounds;
+    Box bounds;
     Node *left, *right;
     Body *body;
     Node() {
@@ -72,16 +72,16 @@ class KDTree{
         return result;
     }
 
-    void intersect(Node *v, myFloat &currentTime,
+    void intersect(Node *v, goodFloat &currentTime,
                    const Body * &currentIntersection,
                    const Ray &currentRay) const {
         ++steps;
         if (!v || !(v->bounds.intersects(currentRay))) {
             return;
         }
-        Vector current = v->body->figure->rayIntersection(currentRay);
+        Vector3D current = v->body->figure->rayIntersection(currentRay);
         if (current != NONE) {
-            myFloat myTime = (current - currentRay.start)
+            goodFloat myTime = (current - currentRay.start)
                               * currentRay.direction;
             if (greater(myTime, 0.) && less(myTime, currentTime)) {
                 currentTime = myTime;
@@ -109,14 +109,14 @@ public:
         }
         vector <Body *> bodies(figures.size());
         for (size_t i = 0; i < figures.size(); ++i) {
-            bodies[i] = new Body({RGB(120, 100, 90)},
+            bodies[i] = new Body({figures[i]->figureColor},
                                  figures[i]);
         }
         root = makeTree(bodies.begin(), bodies.end(), 0);
     }
 
-    std::pair<Vector, const Body *> rayIntersection(const Ray &ray) const {
-        myFloat currentTime = 1e15;
+    std::pair<Vector3D, const Body *> rayIntersection(const Ray &ray) const {
+        goodFloat currentTime = 1e15;
         const Body *currentIntersection = NULL;
         intersect(root,
                   currentTime,

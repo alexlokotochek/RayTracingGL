@@ -17,8 +17,7 @@ struct Body {
     }
 
     Body(const Properties &properties, Object *& figure)
-        : properties(properties), figure(figure) {
-    }
+        : properties(properties), figure(figure) {}
 
     ~Body() {
         delete figure;

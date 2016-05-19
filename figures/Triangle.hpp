@@ -9,14 +9,14 @@
 using std::min;
 using std::max;
 
-using namespace Float;
-using namespace BasicGeom;
+using namespace GoodFloat;
+using namespace Geometry;
 
 
 class Triangle : public Object{
     static const int SIDES = 3;
-    Vector V[SIDES];
-    bool inside(const Vector &v) const {
+    Vector3D V[SIDES];
+    bool inside(const Vector3D &v) const {
         for (int i = 0; i < SIDES; ++i) {
             if (!collinearIfParralel(
                     (V[(i + 1) % SIDES] - V[i]) % (v - V[i]),
@@ -32,15 +32,14 @@ class Triangle : public Object{
     }
 
     Plane getContainingPlane() const {
-        Vector dir1 = V[1] - V[0];
-        Vector dir2 = V[2] - V[0];
+        Vector3D dir1 = V[1] - V[0];
+        Vector3D dir2 = V[2] - V[0];
         return Plane(V[0], dir1, dir2);
     }
 public:
-    Triangle() {
-    }
+    Triangle() {}
 
-    Triangle(const Vector &a, const Vector &b, const Vector &c) {
+    Triangle(const Vector3D &a, const Vector3D &b, const Vector3D &c) {
         V[0] = a, V[1] = b, V[2] = c;
     }
 
@@ -48,15 +47,15 @@ public:
         return SIDES;
     }
 
-    Vector &operator[](size_t i) {
+    Vector3D &operator[](size_t i) {
         if (i >= SIDES) {
             throw "triangle only has three sides";
         }
         return V[i];
     }
 
-    BoundingBox getBoundingBox() const {
-        BoundingBox result;
+    Box getBoundingBox() const {
+        Box result;
         for (int i = 0; i < 3; ++i) {
             result[i][0] = min(min(V[0][i], V[1][i]), V[2][i]);
             result[i][1] = max(max(V[0][i], V[1][i]), V[2][i]);
@@ -64,7 +63,7 @@ public:
         return result;
     }
 
-    myFloat getBoundingBox(int dim, int side) const {
+    goodFloat getBoundingBox(int dim, int side) const {
         if (side == 0) {
             return min(V[0][dim], min(V[1][dim], V[2][dim]));
         } else {
@@ -72,13 +71,13 @@ public:
         }
     }
 
-    Plane getTangentPlane(const Vector &point) const {
+    Plane getTangentPlane(const Vector3D &point) const {
         return getContainingPlane();
     }
 
-    Vector rayIntersection(const Ray &r) const {
+    Vector3D rayIntersection(const Ray &r) const {
         Plane self = getContainingPlane();
-        Vector candidate = intersect(r, self);
+        Vector3D candidate = intersect(r, self);
         if (inside(candidate)) {
             return candidate;
         }

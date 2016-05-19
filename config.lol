@@ -1,4 +1,4 @@
-position 15 0 0
+position 10 0 0
 topLeft 5 -5 5
 bottomLeft 5 -5 -5
 topRight 5 5 5

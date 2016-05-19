@@ -3,136 +3,136 @@
 
 #include <cmath>
 
-typedef double myFloat;
+typedef double goodFloat;
 
-namespace Float {
-    const myFloat EPS = 1e-9;
+namespace GoodFloat {
+    const goodFloat EPS = 1e-9;
 
-    inline bool eq(myFloat a, myFloat b) {
+    inline bool eq(goodFloat a, goodFloat b) {
         return fabsl(a - b) < EPS;
     }
 
-    inline bool less(myFloat a, myFloat b) {
+    inline bool less(goodFloat a, goodFloat b) {
         return a + EPS < b;
     }
 
-    inline bool lessOrEqual(myFloat a, myFloat b) {
+    inline bool lessOrEqual(goodFloat a, goodFloat b) {
         return a < b + EPS;
     }
 
-    inline bool greater(myFloat a, myFloat b) {
+    inline bool greater(goodFloat a, goodFloat b) {
         return less(b, a);
     }
 
-    inline bool greaterOrEqual(myFloat a, myFloat b) {
+    inline bool greaterOrEqual(goodFloat a, goodFloat b) {
         return lessOrEqual(b, a);
     }
 
-    myFloat sq(myFloat a) {
+    goodFloat sq(goodFloat a) {
         return a * a;
     }
 };
 
-using namespace Float;
+using namespace GoodFloat;
 
-namespace BasicGeom {
+namespace Geometry {
 
-    struct Vector {
-        myFloat x, y, z;
+    struct Vector3D {
+        goodFloat x, y, z;
 
-        Vector();
+        Vector3D();
 
-        Vector(myFloat x, myFloat y, myFloat z);
+        Vector3D(goodFloat x, goodFloat y, goodFloat z);
 
-        bool operator==(const Vector &a) const;
+        bool operator==(const Vector3D &a) const;
 
-        bool operator!=(const Vector &a) const;
+        bool operator!=(const Vector3D &a) const;
 
-        Vector operator-(const Vector &a) const;
+        Vector3D operator-(const Vector3D &a) const;
 
-        Vector operator+(const Vector &a) const;
+        Vector3D operator+(const Vector3D &a) const;
 
-        myFloat operator*(const Vector &a) const;
+        goodFloat operator*(const Vector3D &a) const;
 
-        Vector operator%(const Vector &a) const;
+        Vector3D operator%(const Vector3D &a) const;
 
-        Vector operator-() const;
+        Vector3D operator-() const;
 
-        Vector operator*(const myFloat &k) const;
+        Vector3D operator*(const goodFloat &k) const;
 
-        Vector operator/(const myFloat &k) const;
+        Vector3D operator/(const goodFloat &k) const;
 
-        myFloat len() const;
+        goodFloat len() const;
 
-        myFloat len2() const;
+        goodFloat len2() const;
 
-        Vector normed() const;
+        Vector3D normed() const;
 
-        myFloat operator[](size_t i) const;
+        goodFloat operator[](size_t i) const;
     };
 
-    const Vector NONE = Vector(1e15, 1e15, 1e15);
+    const Vector3D NONE = Vector3D(1e15, 1e15, 1e15);
 
-    Vector::Vector() { }
+    Vector3D::Vector3D() { }
 
-    Vector::Vector(myFloat x,
-                   myFloat y,
-                   myFloat z) : x(x), y(y), z(z) { }
+    Vector3D::Vector3D(goodFloat x,
+                   goodFloat y,
+                   goodFloat z) : x(x), y(y), z(z) { }
 
-    bool Vector::operator==(const Vector &a) const {
+    bool Vector3D::operator==(const Vector3D &a) const {
         return eq(x, a.x) && eq(y, a.y) && eq(z, a.z);
     }
 
-    bool Vector::operator!=(const Vector &a) const {
+    bool Vector3D::operator!=(const Vector3D &a) const {
         return !(operator==(a));
     }
 
-    Vector Vector::operator-(const Vector &a) const {
-        return Vector(x - a.x, y - a.y, z - a.z);
+    Vector3D Vector3D::operator-(const Vector3D &a) const {
+        return Vector3D(x - a.x, y - a.y, z - a.z);
     }
 
-    Vector Vector::operator+(const Vector &a) const {
-        return Vector(x + a.x, y + a.y, z + a.z);
+    Vector3D Vector3D::operator+(const Vector3D &a) const {
+        return Vector3D(x + a.x, y + a.y, z + a.z);
     }
 
-    myFloat Vector::operator*(const Vector &a) const {
+    goodFloat Vector3D::operator*(const Vector3D &a) const {
         return x * a.x + y * a.y + z * a.z;
     }
 
-    Vector Vector::operator%(const Vector &a) const {
-        return Vector(y * a.z - z * a.y,
+    Vector3D Vector3D::operator%(const Vector3D &a) const {
+        return Vector3D(y * a.z - z * a.y,
                       z * a.x - x * a.z,
                       x * a.y - y * a.x);
     }
 
-    Vector Vector::operator-() const {
-        return Vector(-x, -y, -z);
+    Vector3D Vector3D::operator-() const {
+        return Vector3D(-x, -y, -z);
     }
 
-    Vector Vector::operator*(const myFloat &k) const {
-        return Vector(x * k, y * k, z * k);
+    Vector3D Vector3D::operator*(const goodFloat &k) const {
+        return Vector3D(x * k, y * k, z * k);
     }
 
-    Vector Vector::operator/(const myFloat &k) const {
+    Vector3D Vector3D::operator/(const goodFloat &k) const {
         if (eq(k, 0.)) {
             return NONE;
         }
         return operator*(1. / k);
     }
 
-    myFloat Vector::len() const {
+    goodFloat Vector3D::len() const {
         return sqrt(operator*(*this));
     }
 
-    myFloat Vector::len2() const {
+    goodFloat Vector3D::len2() const {
         return operator*(*this);
     }
 
-    Vector Vector::normed() const {
+    Vector3D Vector3D::normed() const {
         return operator/(len());
     }
 
-    myFloat Vector::operator[](size_t i) const {
+    goodFloat Vector3D::operator[](size_t i) const {
         if (i == 0) {
             return x;
         }
@@ -142,11 +142,9 @@ namespace BasicGeom {
         return z;
     }
 
-    bool collinearIfParralel(const Vector &a, const Vector &b) {
+    bool collinearIfParralel(const Vector3D &a, const Vector3D &b) {
         return greaterOrEqual(a * b, 0.);
     }
-
-
 
     enum ERayConstructor {
         START_DIRECTION,
@@ -154,9 +152,9 @@ namespace BasicGeom {
     };
 
     struct Ray {
-        Vector start;
-        Vector direction;
-        Ray(const Vector &v1, const Vector &v2,
+        Vector3D start;
+        Vector3D direction;
+        Ray(const Vector3D &v1, const Vector3D &v2,
             ERayConstructor type=START_DIRECTION) {
             switch(type) {
                 case START_DIRECTION:
@@ -172,53 +170,37 @@ namespace BasicGeom {
     };
 
     struct Plane {
-        Vector n;
-        Vector start;
+        Vector3D n;
+        Vector3D start;
 
-        Plane(const Vector &start, const Vector &a, const Vector &b)
+        Plane(const Vector3D &start, const Vector3D &a, const Vector3D &b)
             : start(start) {
             n = a % b;
             n = n / n.len();
         }
 
-        Plane(const Vector &start, const Vector &n) : start(start) {
+        Plane(const Vector3D &start, const Vector3D &n) : start(start) {
             this->n = n.normed();
         }
 
-        myFloat d() const {
+        goodFloat d() const {
             return -start * n;
         }
     };
 
-    myFloat det(const Vector &a, const Vector &b, const Vector &c) {
+    goodFloat det(const Vector3D &a, const Vector3D &b, const Vector3D &c) {
         return a.x * (b.y * c.z - b.z * c.y)
                + a.y * (b.z * c.x - b.x * c.z)
                + a.z * (b.x * c.y - b.y * c.x);
     }
 
-    Vector ThreePlanesIntersection(const Plane &a, const Plane &b,
-                                   const Plane &c) {
-        myFloat d = det(a.n, b.n, c.n);
-        if (eq(d, 0.)) {
-            return NONE;
-        }
-        Vector dVector = Vector(-a.d(), -b.d(), -c.d());
-        Vector x = Vector(a.n.x, b.n.x, c.n.x);
-        Vector y = Vector(a.n.y, b.n.y, c.n.y);
-        Vector z = Vector(a.n.z, b.n.z, c.n.z);
-        myFloat d1 = det(dVector, y, z);
-        myFloat d2 = det(x, dVector, z);
-        myFloat d3 = det(x, y, dVector);
-        return Vector(d1 / d, d2 / d, d3 / d);
-    }
-
-    Vector intersect(const Ray &ray, const Plane &plane) {
-        Vector dir = ray.direction.normed();
-        myFloat denominator = dir * plane.n;
+    Vector3D intersect(const Ray &ray, const Plane &plane) {
+        Vector3D dir = ray.direction.normed();
+        goodFloat denominator = dir * plane.n;
         if (eq(denominator, 0.)) {
             return NONE;
         }
-        myFloat t = -(ray.start * plane.n + plane.d()) / denominator;
+        goodFloat t = -(ray.start * plane.n + plane.d()) / denominator;
         if (greaterOrEqual(t, 0.)) {
             return ray.start + dir * t;;
         }

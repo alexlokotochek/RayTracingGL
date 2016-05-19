@@ -7,33 +7,33 @@
 #include <algorithm>
 
 
-std::ostream &operator<<(std::ostream &out, Vector const &a) {
+std::ostream &operator<<(std::ostream &out, Vector3D const &a) {
     out << "{" << a.x << " " << a.y << " " << a.z << "}";
     return out;
 }
 
 
 class Camera {
-    Vector position;
-    Vector topLeft;
-    Vector bottomLeft;
-    Vector topRight;
-    Vector xBasis;
-    Vector yBasis;
+    Vector3D position;
+    Vector3D topLeft;
+    Vector3D bottomLeft;
+    Vector3D topRight;
+    Vector3D xBasis;
+    Vector3D yBasis;
     int width;
     int height;
 
 public:
 
-    const Vector &getPosition() const {
+    const Vector3D &getPosition() const {
         return position;
     }
 
 
-    Camera(const Vector &position,
-           const Vector &topLeft,
-           const Vector &bottomLeft,
-           const Vector &topRight,
+    Camera(const Vector3D &position,
+           const Vector3D &topLeft,
+           const Vector3D &bottomLeft,
+           const Vector3D &topRight,
            int width,
            int height) : position(position),
                         topLeft(topLeft),
@@ -46,7 +46,7 @@ public:
         yBasis = (bottomLeft - topLeft) / (float)height;
     }
 
-    Vector getPixel(float x, float y) const {
+    Vector3D getPixel(float x, float y) const {
         return (topLeft+(xBasis*x)+(yBasis*y));
     }
 };

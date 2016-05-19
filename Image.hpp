@@ -8,7 +8,7 @@
 #include <iostream>
 #include <GLUT/glut.h>
 
-using namespace Float;
+using namespace GoodFloat;
 using std::vector;
 
 class RGB {

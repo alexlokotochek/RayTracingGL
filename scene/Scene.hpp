@@ -4,7 +4,7 @@
 #include "LightSource.hpp"
 #include "../Geometry.hpp"
 #include "../KDTree.hpp"
-#include "../reading/LightsLoader.hpp"
+#include "../reading/LightsReader.hpp"
 #include <vector>
 
 class Scene {
@@ -27,13 +27,13 @@ public:
                                                      camViewPoint.first,
                                                      START_POINT));
                 if (lampPoint == camViewPoint) {
-                    Vector normal = camViewPoint.second->figure
+                    Vector3D normal = camViewPoint.second->figure
                                         ->getTangentPlane(camViewPoint.first).n;
                     if (greaterOrEqual(normal * cameraRay.direction, 0.)) {
                         normal = -normal;
                     }
-                    float currentIncrease = fabs(lamp.getIncrease(camViewPoint.first,
-                                                             normal));
+                    double currentIncrease = fabs(lamp.getIncrease(camViewPoint.first,
+                                                                  normal));
                     if (greaterOrEqual(currentIncrease, 0.)) {
                         increase += currentIncrease;
                     } else {
