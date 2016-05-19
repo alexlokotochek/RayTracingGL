@@ -22,8 +22,8 @@ sceneFile models/vaza/vaza.stl
 
 Examples:
 
-![Alt text](gnome.pnd?raw=true "Optional Title")
+![Alt text](gnome.png?raw=true "Optional Title")
 
-![Alt text](bowl.pnd?raw=true "Optional Title")
+![Alt text](bowl.png?raw=true "Optional Title")
 
-![Alt text](spheres.pnd?raw=true "Optional Title")
+![Alt text](spheres.png?raw=true "Optional Title")
