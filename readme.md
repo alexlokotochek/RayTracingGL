@@ -19,3 +19,11 @@ screenHeight 400
 
 lampsFile models/vaza/vaza.l
 sceneFile models/vaza/vaza.stl
+
+Examples:
+
+![Alt text](gnome.pnd?raw=true "Optional Title")
+
+![Alt text](bowl.pnd?raw=true "Optional Title")
+
+![Alt text](spheres.pnd?raw=true "Optional Title")
