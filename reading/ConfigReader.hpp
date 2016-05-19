@@ -1,13 +1,13 @@
-#ifndef RT_CONFIGREADER
-#define RT_CONFIGREADER
+#ifndef GLIB_CONFIG
+#define GLIB_CONFIG
 
 #include <string>
-#include "../BasicGeom.hpp"
+#include "../Geometry.hpp"
 
 namespace ConfigReader {
 
-    char drawMode;
-    char readMode;
+    std::string drawMode;
+    std::string readMode;
     int screenWidth;
     int screenHeight;
     std::string lampsFile;
@@ -29,12 +29,10 @@ namespace ConfigReader {
         while (!fin.eof()) {
             fin >> input;
             if (input == "drawMode") {
-                fin >> input;
-                drawMode = input[0];
+                fin >> drawMode;
             }
             if (input == "readMode") {
-                fin >> input;
-                readMode = input[0];
+                fin >> readMode;
             }
             if (input == "screenWidth") {
                 fin >> screenWidth;
@@ -73,5 +71,4 @@ namespace ConfigReader {
 
 };
 
-
-#endif //RT_CONFIGREADER
+#endif

@@ -1,8 +1,8 @@
-#ifndef RT_STL_READER
-#define RT_STL_READER
+#ifndef GLIB_STL
+#define GLIB_STL
 
 #include "../figures/Triangle.hpp"
-#include "../figures/Figure.hpp"
+#include "../figures/Object.hpp"
 #include "../figures/Sphere.hpp"
 #include <cstdio>
 #include <cstring>
@@ -10,8 +10,8 @@
 const char *VERTEX = "vertex";
 const char *SPHERE = "sphere";
 const char *BAD_FORMAT = "bad stl file";
-vector <Figure *> readAsciiStl(const std::string filename) {
-    vector <Figure *> result;
+vector <Object *> readAsciiStl(const std::string filename) {
+    vector <Object *> result;
     std::ifstream fin(filename,
                       std::ios::binary | std::ios::in);
     static const int MAX_LINE_LENGTH = 80;
@@ -26,20 +26,20 @@ vector <Figure *> readAsciiStl(const std::string filename) {
                     fin >> s;
                 }
             }
-            result.push_back(dynamic_cast<Figure *>(current));
+            result.push_back(dynamic_cast<Object *>(current));
         } else if (strcmp(s, SPHERE) == 0) {
             Sphere *sphere = new Sphere();
             sphere->fscanfSelf(fin);
 
-            result.push_back(dynamic_cast<Figure *>(sphere));
+            result.push_back(dynamic_cast<Object *>(sphere));
         }
     }
     fin.close();
     return result;
 }
 
-vector <Figure *> readBinaryStl(const std::string filename) {
-    vector <Figure *> result;
+vector <Object *> readBinaryStl(const std::string filename) {
+    vector <Object *> result;
     std::ifstream fin(filename,
                       std::ios::binary | std::ios::in);
     char *tmp = new char[100];
@@ -60,7 +60,7 @@ vector <Figure *> readBinaryStl(const std::string filename) {
             fin.read((char *)&(*current)[j].z, 4);
         }
         fin.read((char *)&attribute, 2);
-        result.push_back(dynamic_cast<Figure *>(current));
+        result.push_back(dynamic_cast<Object *>(current));
     }
 
     delete tmp;

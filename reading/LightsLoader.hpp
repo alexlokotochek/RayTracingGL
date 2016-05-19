@@ -1,5 +1,5 @@
-#ifndef RT_LIGHT_LOADER
-#define RT_LIGHT_LOADER
+#ifndef GLIB_LIGHTSLOAD
+#define GLIB_LIGHTSLOAD
 
 #include "../scene/LightSource.hpp"
 #include <vector>
@@ -14,16 +14,9 @@ vector<LightSource> readLightSources(const std::string filename) {
     std::ifstream fin(filename,
                       std::ios::binary | std::ios::in);
     int n;
-//    if (fscanf(in, "%d", &n) != 1) {
-//        throw BAD_FILE;
-//    }
     fin >> n;
     for (int i = 0; i < n; ++i) {
         LightSource source;
-//        if (fscanf(in, "%lf%lf%lf%lf", &source.position.x, &source.position.y,
-//                               &source.position.z, &source.energy) != 4) {
-//            throw BAD_FILE;
-//        }
         fin >> source.position.x >>
                 source.position.y >>
                 source.position.z >>

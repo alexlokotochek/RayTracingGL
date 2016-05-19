@@ -1,12 +1,12 @@
-#ifndef RT_KD_TREE
-#define RT_KD_TREE
+#ifndef GLIB_KDTREE
+#define GLIB_KDTREE
 
 #include <algorithm>
-#include "BasicGeom.hpp"
+#include "Geometry.hpp"
 #include "scene/Body.hpp"
 #include "Image.hpp"
 #include <utility>
-#include "figures/Figure.hpp"
+#include "figures/Object.hpp"
 #include "reading/STLReader.hpp"
 #include <vector>
 
@@ -100,15 +100,11 @@ class KDTree{
 
 public:
 
-    KDTree(const std::string filename, const char &readMode) {
-        vector <Figure *> figures;
-        if (readMode == 'a') {
+    KDTree(const std::string filename, const std::string readMode) {
+        vector <Object *> figures;
+        if (readMode == "ascii") {
             figures = readAsciiStl(filename);
-        }
-        if (readMode == 'b') {
-
-            std::cout << "binary reading" << std::endl;
-
+        }else if (readMode == "binary") {
             figures = readBinaryStl(filename);
         }
         vector <Body *> bodies(figures.size());

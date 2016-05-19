@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
                   ConfigReader::screenWidth,
                   ConfigReader::screenHeight);
 
-    if (ConfigReader::drawMode == 'g') {
+    if (ConfigReader::drawMode == "glut") {
 
         Scene *scene = new Scene(ConfigReader::lampsFile,
                                  ConfigReader::sceneFile,
@@ -27,7 +27,7 @@ int main(int argc, char **argv) {
         image.show(argc, argv);
         delete scene;
 
-    } else {
+    } else if (ConfigReader::drawMode == "file"){
 
         Scene *scene = new Scene(ConfigReader::lampsFile,
                                  ConfigReader::sceneFile,

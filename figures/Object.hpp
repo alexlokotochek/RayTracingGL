@@ -1,7 +1,7 @@
-#ifndef RT_FIGURE
-#define RT_FIGURE
+#ifndef GLIB_OBJECT
+#define GLIB_OBJECT
 
-#include "../BasicGeom.hpp"
+#include "../Geometry.hpp"
 #include <algorithm>
 
 using namespace BasicGeom;
@@ -73,20 +73,6 @@ bool intersects(const myFloat *first, const myFloat *second) {
     return greaterOrEqual(min(first[1], second[1]), max(first[0], second[0]));
 }
 
-bool intersects(const BoundingBox &a, const BoundingBox &b) {
-    for (int i = 0; i < 3; ++i) {
-        if (!intersects(a[i], b[i])) {
-            return false;
-        }
-    }
-    return true;
-}
-
-//is first inside second
-bool isInside(const myFloat *first, const myFloat *second) {
-    return lessOrEqual(second[0], first[0]) && lessOrEqual(first[1], second[1]);
-}
-
 bool isInside(const BoundingBox &a, const BoundingBox &b) {
     for (int i = 0; i < 3; ++i) {
         if (!isInside(a, b)) {
@@ -96,7 +82,7 @@ bool isInside(const BoundingBox &a, const BoundingBox &b) {
     return true;
 }
 
-struct Figure {
+struct Object {
     virtual Vector rayIntersection(const Ray &r) const = 0;
     virtual Plane getTangentPlane(const Vector &point) const = 0;
     virtual BoundingBox getBoundingBox() const = 0;
@@ -104,7 +90,7 @@ struct Figure {
         return getBoundingBox()[dim][side];
     }
 
-    virtual ~Figure() {
+    virtual ~Object() {
     }
 };
 

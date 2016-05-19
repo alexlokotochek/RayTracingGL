@@ -1,5 +1,5 @@
-#ifndef RT_BASIC_GEOM
-#define RT_BASIC_GEOM
+#ifndef GEOMETRY
+#define GEOMETRY
 
 #include <cmath>
 

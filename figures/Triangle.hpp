@@ -1,8 +1,8 @@
-#ifndef RT_TRIANGLE
-#define RT_TRIANGLE
+#ifndef GLIB_TRIANGLE
+#define GLIB_TRIANGLE
 
-#include "Figure.hpp"
-#include "../BasicGeom.hpp"
+#include "Object.hpp"
+#include "../Geometry.hpp"
 #include <algorithm>
 #include <cstdio>
 
@@ -13,7 +13,7 @@ using namespace Float;
 using namespace BasicGeom;
 
 
-class Triangle : public Figure{
+class Triangle : public Object{
     static const int SIDES = 3;
     Vector V[SIDES];
     bool inside(const Vector &v) const {

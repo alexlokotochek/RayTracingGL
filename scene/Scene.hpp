@@ -1,8 +1,8 @@
-#ifndef RT_SCENE
-#define RT_SCENE
+#ifndef GLIB_SCENE
+#define GLIB_SCENE
 
 #include "LightSource.hpp"
-#include "../BasicGeom.hpp"
+#include "../Geometry.hpp"
 #include "../KDTree.hpp"
 #include "../reading/LightsLoader.hpp"
 #include <vector>
@@ -12,7 +12,7 @@ class Scene {
     KDTree *container;
 public:
 
-    Scene(const std::string lightsFile, const std::string figuresFile, const char &readMode) {
+    Scene(const std::string lightsFile, const std::string figuresFile, const std::string readMode) {
         lights = readLightSources(lightsFile);
         container = new KDTree(figuresFile, readMode);
     }

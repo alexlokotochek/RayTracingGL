@@ -1,8 +1,8 @@
-#ifndef RT_CAMERA
-#define RT_CAMERA
+#ifndef GLIB_CAMERA
+#define GLIB_CAMERA
 
 #include "../Image.hpp"
-#include "../figures/Figure.hpp"
+#include "../figures/Object.hpp"
 #include "Scene.hpp"
 #include <algorithm>
 

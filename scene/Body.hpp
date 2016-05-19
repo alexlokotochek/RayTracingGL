@@ -1,8 +1,8 @@
-#ifndef RT_BODY
-#define RT_BODY
+#ifndef GLIB_BODY
+#define GLIB_BODY
 
 #include "../Image.hpp"
-#include "../figures/Figure.hpp"
+#include "../figures/Object.hpp"
 
 struct Body {
     struct Properties {
@@ -10,13 +10,13 @@ struct Body {
     };
 
     Properties properties;
-    Figure *figure;
+    Object *figure;
 
     Body() {
         figure = NULL;
     }
 
-    Body(const Properties &properties, Figure *& figure)
+    Body(const Properties &properties, Object *& figure)
         : properties(properties), figure(figure) {
     }
 

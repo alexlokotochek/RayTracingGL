@@ -1,9 +1,9 @@
-#ifndef RT_IMAGE
-#define RT_IMAGE
+#ifndef GLIB_IMAGE
+#define GLIB_IMAGE
 
 #include <vector>
 #include <cstddef>
-#include "BasicGeom.hpp"
+#include "Geometry.hpp"
 #include <fstream>
 #include <iostream>
 #include <GLUT/glut.h>

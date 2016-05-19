@@ -1,8 +1,8 @@
-#ifndef RT_SPHERE
-#define RT_SPHERE
+#ifndef GLIB_SPHERE
+#define GLIB_SPHERE
 
-#include "Figure.hpp"
-#include "../BasicGeom.hpp"
+#include "Object.hpp"
+#include "../Geometry.hpp"
 #include <algorithm>
 #include <cstdio>
 
@@ -11,7 +11,7 @@ using std::min;
 using namespace Float;
 using namespace BasicGeom;
 
-struct Sphere: public Figure {
+struct Sphere: public Object {
     Vector O;
     myFloat R;
 
@@ -52,10 +52,6 @@ public:
     }
 
     void fscanfSelf(std::ifstream &fin) {
-//        if (fscanf(in, "%lf %lf %lf %lf", &O.x, &O.y, &O.z, &R) != 4) {
-//            return false;
-//        }
-//        return true;
         fin >> O.x >> O.y >> O.z >> R;
     }
 
