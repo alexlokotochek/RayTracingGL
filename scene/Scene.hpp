@@ -17,6 +17,16 @@ public:
         container = new KDTree(figuresFile, readMode);
     }
 
+    Scene (vector<LightSource> &lights_, vector<Object*> &objects) {
+        lights = lights_;
+        container = new KDTree(objects);
+
+        std::cerr << "lights_size in Scene(): " << lights.size() << std::endl;
+
+    }
+
+
+
     RGB color(const Ray &cameraRay) const {
         auto camViewPoint = container->rayIntersection(cameraRay);
         if (camViewPoint.first != NONE) {

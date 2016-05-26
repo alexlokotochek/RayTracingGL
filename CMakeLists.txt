@@ -12,13 +12,15 @@ set(SOURCE_FILES
         reading/ConfigReader.hpp
         reading/LightsReader.hpp
         reading/STLReader.hpp
+        reading/RTReader.hpp
         scene/Body.hpp
         scene/Camera.hpp
         scene/LightSource.hpp
         scene/Scene.hpp
         Geometry.hpp
         Image.hpp
-        KDTree.hpp)
+        KDTree.hpp
+        Runner.hpp)
 
 #########################################################
 # FIND GLUT

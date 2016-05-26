@@ -5,7 +5,7 @@
 #include "../figures/Object.hpp"
 #include "../figures/Sphere.hpp"
 #include <cstdio>
-#include <cstring>
+#include <string>
 
 vector <Object *> readAsciiStl(const std::string filename) {
     vector <Object *> result;
@@ -36,7 +36,8 @@ vector <Object *> readAsciiStl(const std::string filename) {
 vector <Object *> readBinaryStl(const std::string filename) {
     vector <Object *> result;
     std::ifstream fin(filename,
-                      std::ios::binary | std::ios::in);
+                      std::ios::binary |
+                      std::ios::in);
     char *tmp = new char[100];
     fin.read(tmp, 80);
     unsigned int triangleCount;

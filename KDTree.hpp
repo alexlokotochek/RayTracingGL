@@ -115,6 +115,22 @@ public:
         root = makeTree(bodies.begin(), bodies.end(), 0);
     }
 
+    KDTree(vector<Object *> &figures) {
+        vector <Body *> bodies(figures.size());
+        for (size_t i = 0; i < figures.size(); ++i) {
+            bodies[i] = new Body({figures[i]->figureColor},
+                                 figures[i]);
+        }
+        root = makeTree(bodies.begin(), bodies.end(), 0);
+
+        std::cerr << "figures_size in KDTree(): " << figures.size() << std::endl;
+        std::cerr << "figure[0].color in KDTree(): " << (int)figures[0]->figureColor.R << " "
+        << (int)figures[0]->figureColor.G << " " << (int)figures[0]->figureColor.B << std::endl;
+
+
+
+    }
+
     std::pair<Vector3D, const Body *> rayIntersection(const Ray &ray) const {
         goodFloat currentTime = 1e15;
         const Body *currentIntersection = NULL;
